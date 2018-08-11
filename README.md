@@ -1,12 +1,19 @@
 # codeforyou-jwt
 
-user guides
+
+## Installation
+
+```
+composer require codeforyou/jwt
+```
+
+## Get started
 
 
 ```
 use codeforyou\jwt\Jwt;
 
-$payload = {'user_id': 1};
+$payload = ['user_id' => 1];
 $secret = '123456';
 $alg = 'sha256';
 
