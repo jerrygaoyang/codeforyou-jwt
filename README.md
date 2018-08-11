@@ -11,7 +11,7 @@ composer require codeforyou/jwt
 
 
 ```
-use codeforyou\Jwt\JWT;
+use Codeforyou\Jwt\JWT;
 
 $payload = ['user_id' => 1];
 $secret = '123456';
