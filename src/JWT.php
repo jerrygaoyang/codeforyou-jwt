@@ -14,9 +14,7 @@ class JWT
 {
     public static function header()
     {
-        return [
-            'typ' => 'jwt'
-        ];
+        return ['typ' => 'jwt', 'alg' => 'HS256'];
     }
 
     public static function safe_base64_decode($string)
@@ -38,27 +36,26 @@ class JWT
         return $data;
     }
 
-    public static function signature(array $header, array $payload, string $secret, string $alg)
+    public static function signature(array $header, array $payload, string $secret)
     {
         $base64_header = self::safe_base64_encode(json_encode($header));
         $base64_payload = self::safe_base64_encode(json_encode($payload));
-        $signature = hash_hmac($alg, $base64_header . $base64_payload, $secret, true);
+        $signature = hash_hmac('sha256', $base64_header . $base64_payload, $secret, true);
         $base64_signature = self::safe_base64_encode($signature);
         return $base64_signature;
     }
 
-    public static function encode(array $payload, string $secret, string $alg = 'sha256')
+    public static function encode(array $payload, string $secret)
     {
         $header = self::header();
-        $header['alg'] = $alg;
         $base64_header = self::safe_base64_encode(json_encode($header));
         $base64_payload = self::safe_base64_encode(json_encode($payload));
-        $base64_signature = self::signature($header, $payload, $secret, $alg);
+        $base64_signature = self::signature($header, $payload, $secret);
         $token = $base64_header . '.' . $base64_payload . '.' . $base64_signature;
         return $token;
     }
 
-    public static function decode(string $token, string $secret, string $alg = 'sha256')
+    public static function decode(string $token, string $secret)
     {
         $arr = explode('.', $token);
         if (count($arr) != 3) {
@@ -66,7 +63,7 @@ class JWT
         }
         $header = json_decode(self::safe_base64_decode($arr[0]));
         $payload = json_decode(self::safe_base64_decode($arr[1]));
-        $base64_signature = self::signature($header, $payload, $secret, $alg);
+        $base64_signature = self::signature($header, $payload, $secret);
         if (!hash_equals($base64_signature, $arr[2])) {
             throw new JwtException('invalid token');
         }

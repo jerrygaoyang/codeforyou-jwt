@@ -1,6 +1,6 @@
 {
   "name": "codeforyou/jwt",
-  "description": "jwt auth for encode and decode",
+  "description": "jwt auth for encode and decode; alg: HS256",
   "license": "MIT",
   "authors": [
     {
@@ -9,7 +9,9 @@
     }
   ],
   "minimum-stability": "dev",
-  "require": {},
+  "require": {
+    "php": ">=7.0.0"
+  },
   "autoload": {
     "psr-4": {
       "Codeforyou\\Jwt\\": "src/"
