@@ -38,7 +38,7 @@ class JWT
         return $data;
     }
 
-    public static function sinature(array $header, array $payload, string $secret, string $alg)
+    public static function signature(array $header, array $payload, string $secret, string $alg)
     {
         $base64_header = self::safe_base64_encode(json_encode($header));
         $base64_payload = self::safe_base64_encode(json_encode($payload));
@@ -53,7 +53,7 @@ class JWT
         $header['alg'] = $alg;
         $base64_header = self::safe_base64_encode(json_encode($header));
         $base64_payload = self::safe_base64_encode(json_encode($payload));
-        $base64_signature = self::sinature($header, $payload, $secret, $alg);
+        $base64_signature = self::signature($header, $payload, $secret, $alg);
         $token = $base64_header . '.' . $base64_payload . '.' . $base64_signature;
         return $token;
     }
@@ -66,7 +66,7 @@ class JWT
         }
         $header = json_decode(self::safe_base64_decode($arr[0]));
         $payload = json_decode(self::safe_base64_decode($arr[1]));
-        $base64_signature = self::sinature($header, $payload, $secret, $alg);
+        $base64_signature = self::signature($header, $payload, $secret, $alg);
         if (!hash_equals($base64_signature, $arr[2])) {
             throw new JwtException('invalid token');
         }
