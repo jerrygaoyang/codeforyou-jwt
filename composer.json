@@ -1,6 +1,6 @@
 {
   "name": "codeforyou/jwt",
-  "description": "jwt auth for encode decode and token expire_in authenticate",
+  "description": "jwt auth for encode and decode",
   "license": "MIT",
   "authors": [
     {
