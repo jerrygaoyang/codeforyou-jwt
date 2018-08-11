@@ -61,8 +61,8 @@ class JWT
         if (count($arr) != 3) {
             throw new JwtException('invalid token');
         }
-        $header = json_decode(self::safe_base64_decode($arr[0]));
-        $payload = json_decode(self::safe_base64_decode($arr[1]));
+        $header = json_decode(self::safe_base64_decode($arr[0]), true);
+        $payload = json_decode(self::safe_base64_decode($arr[1]), true);
         $base64_signature = self::signature($header, $payload, $secret);
         if (!hash_equals($base64_signature, $arr[2])) {
             throw new JwtException('invalid token');
