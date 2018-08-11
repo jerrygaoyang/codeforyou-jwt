@@ -13,7 +13,9 @@ composer require codeforyou/jwt
 ```
 use Codeforyou\Jwt\JWT;
 
+
 $payload = ['user_id' => 1];
+
 $secret = '123456';
 
 $token = JWT::encode($payload, $secret);
