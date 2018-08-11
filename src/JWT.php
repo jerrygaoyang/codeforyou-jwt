@@ -6,11 +6,11 @@
  * Time: 上午11:26
  */
 
-namespace codeforyou\jwt;
+namespace Codeforyou\Jwt;
 
-use codeforyou\jwt\exceptions\TokenException;
+use Codeforyou\Jwt\JwtException;
 
-class Jwt
+class JWT
 {
     public static function header()
     {
@@ -62,13 +62,13 @@ class Jwt
     {
         $arr = explode('.', $token);
         if (count($arr) != 3) {
-            throw new TokenException('invalid token');
+            throw new JwtException('invalid token');
         }
         $header = json_decode(self::safe_base64_decode($arr[0]));
         $payload = json_decode(self::safe_base64_decode($arr[1]));
         $base64_signature = self::sinature($header, $payload, $secret, $alg);
         if (!hash_equals($base64_signature, $arr[2])) {
-            throw new TokenException('invalid token');
+            throw new JwtException('invalid token');
         }
         return $payload;
     }

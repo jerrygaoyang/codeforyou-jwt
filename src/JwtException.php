@@ -6,7 +6,7 @@
  * Time: 下午1:05
  */
 
-namespace codeforyou\jwt;
+namespace Codeforyou\Jwt;
 
 use Exception;
 
