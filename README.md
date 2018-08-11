@@ -1,5 +1,9 @@
 # codeforyou-jwt
 
+## Description
+
+> JWT auth for encode and decode; alg: HS256
+
 
 ## Installation
 
