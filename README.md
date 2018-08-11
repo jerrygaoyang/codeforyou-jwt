@@ -11,13 +11,12 @@ composer require codeforyou/jwt
 
 
 ```
-use codeforyou\jwt\Jwt;
+use codeforyou\Jwt\JWT;
 
 $payload = ['user_id' => 1];
 $secret = '123456';
-$alg = 'sha256';
 
-$token = Jwt::encode($payload, $secret , $alg);
+$token = JWT::encode($payload, $secret);
 
-$payload = Jwt::decode($token, $secret, $alg);
+$payload = JWT::decode($token, $secret);
 ```
