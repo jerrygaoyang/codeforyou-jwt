@@ -2,7 +2,7 @@
 
 ## Description
 
-> JWT auth for encode and decode; alg: HS256
+> jwt auth for encode and decode; alg: HS256
 
 
 ## Installation
