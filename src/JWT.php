@@ -14,7 +14,7 @@ class JWT
 {
     public static function header()
     {
-        return ['typ' => 'jwt', 'alg' => 'HS256'];
+        return ['typ' => 'JWT', 'alg' => 'HS256'];
     }
 
     public static function safe_base64_decode($string)
